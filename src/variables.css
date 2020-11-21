@@ -1,0 +1,28 @@
+:root {
+    --color-pure-black:black;
+    --color-black:#221E22;
+    --color-red:#FF1654;
+    --color-grey:#7E7F83;
+    --color-white:#F3F3F4;
+    --color-green:#7BE0AD;
+    --color-blue:#E2FDFF;
+    --color-dark: #333;
+    --font-color-primary: var(--color-white);
+    --font-color-secondary: var(--color-green);
+    --font-color-dark: var(--color-black);
+    --primary-color: var(--color-grey);
+    --secondary-color: var(--color-blue);
+    --highlight-color: var(--color-red);
+    --hover-color: var(--color-white);
+    --hover-color-secondary: var(--color-grey);
+    --background-color: var(--color-black);
+    --button-color-primary: var(--color-green);
+    --responsive-padding: 1rem;
+    --border-color: var(--color-grey);
+}
+
+@media (min-width: 576px) {                             
+    :root {
+      --responsive-padding: 2rem;
+    }
+}

@@ -1,3 +1,2 @@
-# PWA starter template
+# Symptom Tracker - Client
 
-[MEVN-CLI](https://github.com/madlabsinc/mevn-cli)# symptom-tracker-client
