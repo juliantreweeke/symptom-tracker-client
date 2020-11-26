@@ -1,6 +1,7 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import Home from "./views/Home.vue";
+import { ROLES } from "./constants";
 
 Vue.use(VueRouter);
 
@@ -16,12 +17,28 @@ const routes = [
   {
     path: "/",
     name: "login",
-    component: () => import("./views/login/Index.vue")
+    component: () => import("./views/Login/Index.vue")
   },
   {
     path: "/register",
     name: "register",
-    component: () => import("./views/clinician/register/Index.vue")
+    component: () => import("./views/Clinician/Register/Index.vue")
+  },
+  {
+    path: "/dashboard",
+    name: "dashboard",
+    component: () => import("./views/Clinician/Dashboard/Index.vue"),
+    meta: {
+      requiresClinicianAuth: true
+    }
+  },
+  {
+    path: "/assessments",
+    name: "assessments",
+    component: () => import("./views/Client/Assessments/Index.vue"),
+    meta: {
+      requiresClientAuth: true
+    }
   }
 ];
 
@@ -32,8 +49,26 @@ const router = new VueRouter({
 });
 
 router.beforeEach((to, from, next) => {
-  if (to.matched.some(record => record.meta.requiresAuth)) {
-    if (localStorage.getItem("jwt") === null) {
+  if (to.matched.some(record => record.meta.requiresClientAuth)) {
+    console.log(localStorage.getItem);
+    if (
+      localStorage.getItem("jwt") === null ||
+      localStorage.getItem("role") !== ROLES.CLIENT
+    ) {
+      next({
+        path: "/"
+      });
+    } else {
+      next();
+    }
+  }
+
+  if (to.matched.some(record => record.meta.requiresClinicianAuth)) {
+    console.log(localStorage.getItem);
+    if (
+      localStorage.getItem("jwt") === null ||
+      localStorage.getItem("role") !== ROLES.CLINICIAN
+    ) {
       next({
         path: "/"
       });
@@ -44,4 +79,5 @@ router.beforeEach((to, from, next) => {
     next();
   }
 });
+
 export default router;

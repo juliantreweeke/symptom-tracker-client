@@ -2,6 +2,7 @@
 import swal from "sweetalert";
 import FormContainer from "../../components/FormContainer/Index.vue";
 import styles from "./styles.css";
+import { ROLES } from "../../constants";
 
 export default {
   styles,
@@ -20,11 +21,19 @@ export default {
     async loginUser() {
       try {
         const response = await this.$store.dispatch("loginUser", this.login);
-        const { token } = response;
+        const { user, token } = response;
         localStorage.setItem("jwt", token);
-        if (token) {
-          swal("Success", "Login Successful", "success");
-          this.$router.push("/home");
+        localStorage.setItem("role", user.role);
+        if (!token) {
+          return;
+        }
+        swal("Success", "Login Successful", "success");
+
+        if (user.role === ROLES.CLINICIAN) {
+          this.$router.push("/dashboard");
+        }
+        if (user.role === ROLES.CLIENT) {
+          this.$router.push("/assessments");
         }
       } catch (err) {
         swal("Error", "Something Went Wrong", "error");
@@ -41,13 +50,10 @@ export default {
     v-bind:submit="loginUser"
     buttonText="Sign in"
   >
-    <input type="text" id="email" placeholder="Email" v-model="login.email" />
-    <input
-      type="password"
-      id="password"
-      placeholder="Password"
-      v-model="login.password"
-    />
+    <label for="email">Your email address:</label>
+    <input type="email" id="email" v-model="login.email" required />
+    <label for="password">Password:</label>
+    <input type="password" id="password" v-model="login.password" />
     <p>
       Dont have an account??<router-link to="/register">click here</router-link>
     </p>

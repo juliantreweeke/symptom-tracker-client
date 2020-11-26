@@ -1,1 +1,8 @@
-@import '../../styles/index.css'
+@import '../../styles/index.css';
+
+.form input {
+    margin-bottom:20px;
+    padding:8px;
+    width: 80%;
+}
+
