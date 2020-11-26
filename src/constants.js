@@ -21,3 +21,9 @@ export const ROUTES = {
     LOGIN: "user/login"
   }
 };
+
+export const ROLES = {
+  ADMIN: "ADMIN",
+  CLIENT: "CLIENT",
+  CLINICIAN: "CLINICIAN"
+};

@@ -16,9 +16,9 @@
   --max-screen-size: 1280;
 }
 h1 {
-  --min-font-size: 50;
-  --min-font-size-px: 50px;
-  --max-font-size: 90;
+  --min-font-size: 36;
+  --min-font-size-px: 36px;
+  --max-font-size: 36;
 }
 h2 {
   --min-font-size: 40;

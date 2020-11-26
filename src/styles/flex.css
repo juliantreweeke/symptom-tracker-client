@@ -1,0 +1,29 @@
+.flex-grid {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .col {
+    flex: 1;
+  }
+  
+  @media (max-width: 1000px) {
+    /* .flex-grid {
+      display: block;
+    } */
+  }
+  .flex-grid-thirds {
+    display: flex;
+    justify-content: space-between;
+  }
+  .flex-grid-thirds .col {
+    width: 32%;
+  }
+  
+  .flex-center {
+    align-items: center;
+    justify-content: center;
+  }
+
+  .flex-col {
+      flex-direction: column;
+  }
