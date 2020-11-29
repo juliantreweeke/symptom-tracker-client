@@ -1,8 +1,28 @@
 @import '../../styles/index.css';
 
-.form input {
+.form-container h1 {
+    margin-bottom: 61px;
+}
+
+.form-container form {
+ padding:0 12px 0 12px;
+}
+
+.form-container input {
     margin-bottom:20px;
-    padding:8px;
-    width: 80%;
+    padding:16px;
+    width: 100%;
+}
+
+.form-container button {
+    margin: 22px 0px;
+}
+
+.secondary-heading {
+    color: var(--heading-color-secondary);
+}
+
+.primary-heading {
+    color: var(--heading-color-primary);
 }
 

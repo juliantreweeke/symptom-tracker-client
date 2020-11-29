@@ -1,5 +1,6 @@
 <script>
 import swal from "sweetalert";
+import Header from "../../components/Header/Index.vue";
 import FormContainer from "../../components/FormContainer/Index.vue";
 import styles from "./styles.css";
 import { ROLES } from "../../constants";
@@ -7,6 +8,7 @@ import { ROLES } from "../../constants";
 export default {
   styles,
   components: {
+    Header,
     FormContainer
   },
   data() {
@@ -27,7 +29,7 @@ export default {
         if (!token) {
           return;
         }
-        swal("Success", "Login Successful", "success");
+        this.$store.dispatch("getLoggedInUser");
 
         if (user.role === ROLES.CLINICIAN) {
           this.$router.push("/dashboard");
@@ -45,17 +47,25 @@ export default {
 </script>
 
 <template>
-  <FormContainer
-    heading="Sign in"
-    v-bind:submit="loginUser"
-    buttonText="Sign in"
-  >
-    <label for="email">Your email address:</label>
-    <input type="email" id="email" v-model="login.email" required />
-    <label for="password">Password:</label>
-    <input type="password" id="password" v-model="login.password" />
-    <p>
-      Dont have an account??<router-link to="/register">click here</router-link>
-    </p>
-  </FormContainer>
+  <div>
+    <Header />
+    <div class="login">
+      <FormContainer
+        heading="Sign in"
+        v-bind:submit="loginUser"
+        buttonText="Sign in"
+      >
+        <label for="email">Your email address:</label>
+        <input type="email" id="email" v-model="login.email" required />
+        <label for="password">Password:</label>
+        <input type="password" id="password" v-model="login.password" />
+        <template v-slot:help-text>
+          <p class="help-text">
+            Dont have an account?
+            <router-link to="/register">Sign up here</router-link>
+          </p>
+        </template>
+      </FormContainer>
+    </div>
+  </div>
 </template>

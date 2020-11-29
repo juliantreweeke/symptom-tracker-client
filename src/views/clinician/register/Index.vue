@@ -2,6 +2,7 @@
 import swal from "sweetalert";
 import { ROLES } from "../../../constants";
 import EN from "../../../en.json";
+import Header from "../../../components/Header/Index.vue";
 import FormContainer from "../../../components/FormContainer/Index.vue";
 import styles from "./styles.css";
 
@@ -9,6 +10,7 @@ export default {
   styles,
   EN,
   components: {
+    Header,
     FormContainer
   },
   data() {
@@ -56,15 +58,34 @@ export default {
 </script>
 
 <template>
-  <FormContainer v-bind:heading="heading" v-bind:submit="registerUser">
-    <label for="firstName">First name:</label>
-    <input type="text" id="firstName" v-model="register.firstName" required />
-    <label for="lastName">Last name:</label>
-    <input type="text" id="lastName" v-model="register.lastName" required />
-    <label for="email">Your email address:</label>
-    <input type="email" id="email" v-model="register.email" required />
-    <label for="password">Password:</label>
-    <input type="password" id="password" v-model="register.password" />
-    <p>Already have an account??<router-link to="/">click here</router-link></p>
-  </FormContainer>
+  <div>
+    <Header />
+    <div class="register">
+      <FormContainer
+        v-bind:heading="heading"
+        v-bind:submit="registerUser"
+        buttonText="Sign up"
+      >
+        <label for="firstName">First name:</label>
+        <input
+          type="text"
+          id="firstName"
+          v-model="register.firstName"
+          required
+        />
+        <label for="lastName">Last name:</label>
+        <input type="text" id="lastName" v-model="register.lastName" required />
+        <label for="email">Your email address:</label>
+        <input type="email" id="email" v-model="register.email" required />
+        <label for="password">Password:</label>
+        <input type="password" id="password" v-model="register.password" />
+        <template v-slot:help-text>
+          <p class="help-text">
+            Already have an account?
+            <router-link to="/">Log in here</router-link>
+          </p>
+        </template>
+      </FormContainer>
+    </div>
+  </div>
 </template>

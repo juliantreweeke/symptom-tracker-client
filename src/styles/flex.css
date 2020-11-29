@@ -1,3 +1,7 @@
+.flex {
+  display: flex;
+}
+
 .flex-grid {
     display: flex;
     flex-wrap: wrap;
@@ -19,11 +23,17 @@
     width: 32%;
   }
   
-  .flex-center {
+  .flex-align {
     align-items: center;
+  }
+
+  .flex-justify {
     justify-content: center;
   }
 
   .flex-col {
       flex-direction: column;
   }
+
+  
+

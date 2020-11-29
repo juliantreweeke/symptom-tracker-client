@@ -1,0 +1,92 @@
+@import "./variables.css";
+
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Open Sans", sans-serif;
+}
+
+:root {
+  --min-screen-size: 320;
+  --min-screen-size-px: 320px;
+  --max-screen-size: 1280;
+}
+h1 {
+  --min-font-size: 28;
+  --min-font-size-px: 28px;
+  --max-font-size: 28;
+  
+  font-weight: bold;
+  color: var(--heading-color-primary);
+}
+h2 {
+  --min-font-size: 40;
+  --min-font-size-px: 40px;
+  --max-font-size: 60;
+}
+h3 {
+  --min-font-size: 35;
+  --min-font-size-px: 35px;
+  --max-font-size: 45;
+}
+h4 {
+  --min-font-size: 21;
+  --min-font-size-px: 21px;
+  --max-font-size: 31;
+}
+h5 {
+  --min-font-size: 18;
+  --min-font-size-px: 18px;
+  --max-font-size: 22;
+}
+p {
+  --min-font-size: 14;
+  --min-font-size-px: 14px;
+  --max-font-size: 18;
+}
+
+a {
+    text-decoration: none;
+    font-size: 18px;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+p {
+  font-size: calc(
+    var(--min-font-size-px) + (var(--max-font-size) - var(--min-font-size)) *
+      (100vw - var(--min-screen-size-px)) /
+      (var(--max-screen-size) - var(--min-screen-size))
+  );
+}
+
+label {
+  font-size: 18px;
+  font-weight: bold;
+  color: var(--color-grey);
+  padding-bottom: 16px;
+}
+
+li {
+  list-style: none;
+}
+
+input {
+  font-size: 18px;
+  border: 1px solid var(--input-border);
+  color: var(--font-color-secondary);
+  background-color: var(--input-background);
+}
+
+.help-text, .help-text a {
+  color: var(--color-grey);
+  font-size: 14px;
+}
+

@@ -1,0 +1,12 @@
+@import '../../styles/index.css';
+
+.button {
+    background-color: var(--button-color-primary);
+    width: 117px;
+    border-radius: 22px;
+    font-size: 18px;
+    color: var(--button-color-text);
+    cursor: pointer;
+    height:44px;
+    border: none;
+}

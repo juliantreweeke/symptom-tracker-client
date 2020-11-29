@@ -1,0 +1,32 @@
+@import '../../styles/index.css';
+
+.side-bar {
+    width:200px;
+    height:100vh;
+    background-color: var(--background-color);
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    overflow-x: hidden;
+    border-right: 1px solid  var(--layout-border-color);
+}
+
+.side-bar-ul {
+    width:100%;
+}
+
+.side-bar a {
+    width:100%;
+    text-align: center;
+    line-height: 75px;
+}
+
+.side-bar-list {
+    cursor: pointer;
+}
+
+
+.side-bar-list:hover {
+    background-color: var(--nav-hover-color);
+}

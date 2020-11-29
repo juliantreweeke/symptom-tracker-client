@@ -17,6 +17,9 @@ export const ROUTES = {
   CLIENT: "client",
   CLINICIAN: "clinician",
   USER: {
+    AUTH: "user/auth",
+    CLIENTS: "user/clients",
+    CREATE_CLIENT: "user/client",
     REGISTER: "user/register",
     LOGIN: "user/login"
   }
@@ -27,3 +30,22 @@ export const ROLES = {
   CLIENT: "CLIENT",
   CLINICIAN: "CLINICIAN"
 };
+
+export const SIDE_BAR_NAVIGATION = [
+  {
+    title: "Home",
+    route: "dashboard"
+  },
+  {
+    title: "Clients",
+    route: "clients"
+  },
+  {
+    title: "Tests",
+    route: "tests"
+  },
+  {
+    title: "Settings",
+    route: "settings"
+  }
+];

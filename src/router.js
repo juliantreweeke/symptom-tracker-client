@@ -33,6 +33,38 @@ const routes = [
     }
   },
   {
+    path: "/settings",
+    name: "settings",
+    component: () => import("./views/Clinician/Settings/Index.vue"),
+    meta: {
+      requiresClinicianAuth: true
+    }
+  },
+  {
+    path: "/clients",
+    name: "clients",
+    component: () => import("./views/Clinician/Clients/ClientList/Index.vue"),
+    meta: {
+      requiresClinicianAuth: true
+    }
+  },
+  {
+    path: "/clients/create",
+    name: "create client",
+    component: () => import("./views/Clinician/Clients/CreateClient/Index.vue"),
+    meta: {
+      requiresClinicianAuth: true
+    }
+  },
+  {
+    path: "/tests",
+    name: "tests",
+    component: () => import("./views/Clinician/Tests/Index.vue"),
+    meta: {
+      requiresClinicianAuth: true
+    }
+  },
+  {
     path: "/assessments",
     name: "assessments",
     component: () => import("./views/Client/Assessments/Index.vue"),

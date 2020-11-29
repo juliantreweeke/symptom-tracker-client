@@ -1,8 +1,11 @@
-const fetchMethod = method => async ({ body, uri }) => {
+const fetchMethod = method => async ({ body, uri, token }) => {
   const requestOptions = {
     method,
     ...(method === "POST" && body && { body: JSON.stringify(body) }),
-    headers: { "Content-Type": "application/json" }
+    headers: {
+      ...(token && { Authorization: `Bearer ${token}` }),
+      "Content-Type": "application/json"
+    }
   };
 
   try {

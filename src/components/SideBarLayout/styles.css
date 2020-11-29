@@ -1,0 +1,14 @@
+@import '../../styles/index.css';
+
+.side-bar-layout {
+    width:100vw;
+    height:100vh;
+}
+
+.header, main {
+        margin-left: 200px; /* Same as the width of the sidenav */
+}
+
+main {
+    background-color: var(--background-color);
+}

@@ -1,0 +1,19 @@
+@import '../../styles/index.css';
+
+.header {
+    background-color: var(--color-grey-secondary);
+    width: 100%;
+    color: var(--heading-color-secondary);
+    height: 75px;
+    
+}
+
+.logo {
+    font-size: 36px;
+    font-weight: bold;
+    margin-left:60px;
+}
+
+.logo:visited {
+    color: var(--heading-color-secondary);
+}   

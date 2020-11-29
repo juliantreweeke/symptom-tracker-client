@@ -1,8 +1,12 @@
 <script>
 import styles from "./styles.css";
+import Button from "../Button/Index.vue";
 export default {
   styles,
   name: "FormContainer",
+  components: {
+    Button
+  },
   props: {
     buttonText: {
       default: "Submit",
@@ -11,6 +15,10 @@ export default {
     heading: {
       default: "",
       type: String
+    },
+    variant: {
+      default: false,
+      type: Boolean
     },
     submit: {
       required: true,
@@ -21,13 +29,18 @@ export default {
 </script>
 
 <template>
-  <div class="form-container flex-grid flex-center margin-auto">
-    <form @submit.prevent="submit" class="form flex-grid flex-center flex-col">
-      <h1 v-if="heading.length">{{ heading }}</h1>
+  <div class="form-container flex-grid flex-justify margin-auto">
+    <form @submit.prevent="submit" class="form flex-grid flex-col">
+      <h1
+        v-bind:class="[variant ? 'primary-heading' : 'secondary-heading']"
+        class="form-heading"
+        v-if="heading.length"
+      >
+        {{ heading }}
+      </h1>
       <slot></slot>
-      <button type="submit">
-        {{ buttonText }}
-      </button>
+      <Button type="submit" v-bind:text="buttonText" />
+      <slot name="help-text"></slot>
     </form>
   </div>
 </template>

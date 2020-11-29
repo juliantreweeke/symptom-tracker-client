@@ -3,6 +3,8 @@ import Vuex from "vuex";
 import {
   createHandler,
   deleteHandler,
+  getAuthHandler,
+  getHandler,
   getAllHandler
 } from "../services/requestService";
 
@@ -16,24 +18,51 @@ export default new Vuex.Store({
     assessments: DEFAULT_VALUES.ASSESSMENTS,
     clinicians: DEFAULT_VALUES.CLINICIANS,
     searchQuery: DEFAULT_VALUES.SEARCH_QUERY,
-    status: REQUEST_STATUS.INITIAL
+    status: REQUEST_STATUS.INITIAL,
+    user: {},
+    clients: [],
+    loggedInUser: {}
   },
   mutations: {
     setStatus(state, payload) {
       state.status = payload;
+    },
+    setUser(state, payload) {
+      state.user = payload;
+      console.log("payload", payload);
+      debugger // eslint-disable-line
     },
     setAssessments(state, payload) {
       state.assessments = payload;
     },
     setClinicians(state, payload) {
       state.clinicians = payload;
+    },
+    setClients(state, payload) {
+      state.clients = payload;
+    },
+    setLoggedInUser(state, payload) {
+      state.loggedInUser = payload;
     }
   },
   actions: {
+    async getLoggedInUser({ commit }) {
+      commit("setStatus", REQUEST_STATUS.LOADING);
+      const token = localStorage.getItem("jwt");
+      const loggedInUser = await getAuthHandler(ROUTES.USER.AUTH, token);
+      commit("setLoggedInUser", loggedInUser);
+      commit("setStatus", REQUEST_STATUS.SUCCESS);
+    },
     async createAssessment({ commit }, payload) {
       commit("setStatus", REQUEST_STATUS.LOADING);
       await createHandler(ROUTES.ASSESSMENT, payload);
       commit("setStatus", REQUEST_STATUS.SUCCESS);
+    },
+    async createClient({ commit }, payload) {
+      commit("setStatus", REQUEST_STATUS.LOADING);
+      const client = await createHandler(ROUTES.USER.CREATE_CLIENT, payload);
+      commit("setStatus", REQUEST_STATUS.SUCCESS);
+      return client;
     },
     async deleteAssessment({ commit }, id) {
       commit("setStatus", REQUEST_STATUS.LOADING);
@@ -48,12 +77,21 @@ export default new Vuex.Store({
       const clinicians = await getAllHandler(ROUTES.CLINICIAN);
       commit("setClinicians", clinicians);
     },
+    async getAllClientsById({ commit, state }) {
+      commit("setStatus", REQUEST_STATUS.LOADING);
+      const clients = await getHandler(
+        ROUTES.USER.CLIENTS,
+        state.loggedInUser._id
+      );
+      commit("setClients", clients);
+      commit("setStatus", REQUEST_STATUS.SUCCESS);
+    },
     async loginUser({ commit }, payload) {
       commit("setStatus", REQUEST_STATUS.LOADING);
-      const user = await createHandler(ROUTES.USER.LOGIN, payload);
-      console.log(user, "user");
+      const loggedInUser = await createHandler(ROUTES.USER.LOGIN, payload);
+      commit("setUser", loggedInUser.user);
       commit("setStatus", REQUEST_STATUS.SUCCESS);
-      return user;
+      return loggedInUser;
     },
     async registerUser({ commit }, payload) {
       commit("setStatus", REQUEST_STATUS.LOADING);

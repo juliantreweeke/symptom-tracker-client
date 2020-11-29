@@ -22,6 +22,11 @@ export const getAllHandler = async route => {
   return fetchGet({ uri });
 };
 
+export const getAuthHandler = async (route, token) => {
+  const uri = `${config.apiBaseUrl}/${route}/`;
+  return fetchGet({ uri, token });
+};
+
 export const getHandler = async (route, id) => {
   const uri = `${config.apiBaseUrl}/${route}/${id}`;
   return fetchGet({ uri });
