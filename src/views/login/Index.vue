@@ -3,7 +3,8 @@ import swal from "sweetalert";
 import Header from "../../components/Header/Index.vue";
 import FormContainer from "../../components/FormContainer/Index.vue";
 import styles from "./styles.css";
-import { ROLES } from "../../constants";
+import { sessionStore } from "../../utils/storage";
+import { SESSION_STORAGE_KEYS, ROLES } from "../../constants";
 
 export default {
   styles,
@@ -24,16 +25,20 @@ export default {
       try {
         const response = await this.$store.dispatch("loginUser", this.login);
         const { user, token } = response;
-        localStorage.setItem("jwt", token);
-        localStorage.setItem("role", user.role);
+
         if (!token) {
           return;
         }
+
+        sessionStore.setItem(SESSION_STORAGE_KEYS.JWT, token);
+        sessionStore.setItem(SESSION_STORAGE_KEYS.ROLE, user.role);
+
         this.$store.dispatch("getLoggedInUser");
 
         if (user.role === ROLES.CLINICIAN) {
           this.$router.push("/dashboard");
         }
+
         if (user.role === ROLES.CLIENT) {
           this.$router.push("/assessments");
         }

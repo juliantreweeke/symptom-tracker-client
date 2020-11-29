@@ -38,7 +38,6 @@ export default {
         );
         const { token } = response;
         if (token) {
-          localStorage.setItem("jwt", token);
           this.$router.push("/");
           swal("Success", "Registration Was successful", "success");
         } else {

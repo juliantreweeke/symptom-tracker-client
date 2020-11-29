@@ -1,7 +1,8 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import Home from "./views/Home.vue";
-import { ROLES } from "./constants";
+import { sessionStore } from "./utils/storage";
+import { SESSION_STORAGE_KEYS, ROLES } from "./constants";
 
 Vue.use(VueRouter);
 
@@ -84,8 +85,8 @@ router.beforeEach((to, from, next) => {
   if (to.matched.some(record => record.meta.requiresClientAuth)) {
     console.log(localStorage.getItem);
     if (
-      localStorage.getItem("jwt") === null ||
-      localStorage.getItem("role") !== ROLES.CLIENT
+      sessionStore.getItem(SESSION_STORAGE_KEYS.JWT) === null ||
+      sessionStore.getItem(SESSION_STORAGE_KEYS.ROLE) !== ROLES.CLIENT
     ) {
       next({
         path: "/"
@@ -98,8 +99,8 @@ router.beforeEach((to, from, next) => {
   if (to.matched.some(record => record.meta.requiresClinicianAuth)) {
     console.log(localStorage.getItem);
     if (
-      localStorage.getItem("jwt") === null ||
-      localStorage.getItem("role") !== ROLES.CLINICIAN
+      sessionStore.getItem(SESSION_STORAGE_KEYS.JWT) === null ||
+      sessionStore.getItem(SESSION_STORAGE_KEYS.ROLE) !== ROLES.CLINICIAN
     ) {
       next({
         path: "/"

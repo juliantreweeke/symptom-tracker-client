@@ -31,6 +31,11 @@ export const ROLES = {
   CLINICIAN: "CLINICIAN"
 };
 
+export const SESSION_STORAGE_KEYS = {
+  JWT: "jwt",
+  ROLE: "role"
+};
+
 export const SIDE_BAR_NAVIGATION = [
   {
     title: "Home",

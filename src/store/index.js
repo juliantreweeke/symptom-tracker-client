@@ -8,7 +8,14 @@ import {
   getAllHandler
 } from "../services/requestService";
 
-import { DEFAULT_VALUES, REQUEST_STATUS, ROUTES } from "../constants";
+import { sessionStore } from "../utils/storage";
+
+import {
+  DEFAULT_VALUES,
+  REQUEST_STATUS,
+  ROUTES,
+  SESSION_STORAGE_KEYS
+} from "../constants";
 
 Vue.use(Vuex);
 
@@ -48,7 +55,7 @@ export default new Vuex.Store({
   actions: {
     async getLoggedInUser({ commit }) {
       commit("setStatus", REQUEST_STATUS.LOADING);
-      const token = localStorage.getItem("jwt");
+      const token = sessionStore.getItem(SESSION_STORAGE_KEYS.JWT);
       const loggedInUser = await getAuthHandler(ROUTES.USER.AUTH, token);
       commit("setLoggedInUser", loggedInUser);
       commit("setStatus", REQUEST_STATUS.SUCCESS);

@@ -1,19 +1,22 @@
 <script>
 import styles from "./styles.css";
 import EN from "../../en.json";
+import { sessionStore } from "../../utils/storage";
+import { SESSION_STORAGE_KEYS } from "../../constants";
+
 export default {
   styles,
   name: "Header",
   EN,
   methods: {
     logUserOut() {
-      localStorage.removeItem("jwt");
+      sessionStore.removeItem(SESSION_STORAGE_KEYS.JWT);
       this.$router.push("/");
     }
   },
   computed: {
     loggedIn() {
-      return localStorage.getItem("jwt");
+      return sessionStore.getItem(SESSION_STORAGE_KEYS.JWT);
     }
   }
 };
