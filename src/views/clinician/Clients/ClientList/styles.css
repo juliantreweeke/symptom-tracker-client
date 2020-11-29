@@ -3,3 +3,28 @@
 .client-list {
     
 }
+
+.client-list-table-container {
+    overflow-x:auto;
+}
+
+.client-list-table {
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 0.9em;
+    min-width: 400px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+.client-list-table thead tr {
+    text-align: left;
+}
+
+.client-list-table th,
+.client-list-table td {
+    padding: 12px 100px 12px 24px;
+}
+
+.client-list-table tbody tr {
+    border-bottom: 1px solid var(--color-light-grey);
+}

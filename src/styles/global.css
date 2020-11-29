@@ -90,3 +90,7 @@ input {
   font-size: 14px;
 }
 
+tr {
+  color: var(--font-color-primary);
+  font-size: 18px;
+}

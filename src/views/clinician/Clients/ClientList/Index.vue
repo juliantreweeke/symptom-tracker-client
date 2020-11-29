@@ -39,12 +39,30 @@ export default {
 <template>
   <SideBarLayout>
     <div class="client-list">
-      <ul>
-        <li v-for="(client, index) in clients" v-bind:key="index">
-          {{ client.firstName }}
-        </li>
-      </ul>
-
+      <h1>Clients</h1>
+      <p>Select your client or create a new client.</p>
+      <div class="client-list-table-container">
+        <table class="client-list-table">
+          <thead>
+            <tr>
+              <th>Client name</th>
+              <th>Birth date</th>
+              <th>Tests</th>
+              <th>Notes</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="(client, index) in clients" v-bind:key="index">
+              <td>{{ client.firstName }} {{ client.lastName }}</td>
+              <td>{{ client.DOB }}</td>
+              <td>0</td>
+              <td>{{ client.notes }}</td>
+              <td>{{ client.status || "unconfirmed" }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
       <router-link to="clients/create">
         <Button text="Add new client" />
       </router-link>

@@ -39,18 +39,18 @@ export const SESSION_STORAGE_KEYS = {
 export const SIDE_BAR_NAVIGATION = [
   {
     title: "Home",
-    route: "dashboard"
+    route: "/dashboard"
   },
   {
     title: "Clients",
-    route: "clients"
+    route: "/clients"
   },
   {
     title: "Tests",
-    route: "tests"
+    route: "/tests"
   },
   {
     title: "Settings",
-    route: "settings"
+    route: "/settings"
   }
 ];

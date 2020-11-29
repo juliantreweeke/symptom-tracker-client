@@ -26,18 +26,12 @@ export default new Vuex.Store({
     clinicians: DEFAULT_VALUES.CLINICIANS,
     searchQuery: DEFAULT_VALUES.SEARCH_QUERY,
     status: REQUEST_STATUS.INITIAL,
-    user: {},
     clients: [],
     loggedInUser: {}
   },
   mutations: {
     setStatus(state, payload) {
       state.status = payload;
-    },
-    setUser(state, payload) {
-      state.user = payload;
-      console.log("payload", payload);
-      debugger // eslint-disable-line
     },
     setAssessments(state, payload) {
       state.assessments = payload;
@@ -96,7 +90,7 @@ export default new Vuex.Store({
     async loginUser({ commit }, payload) {
       commit("setStatus", REQUEST_STATUS.LOADING);
       const loggedInUser = await createHandler(ROUTES.USER.LOGIN, payload);
-      commit("setUser", loggedInUser.user);
+      commit("setLoggedInUser", loggedInUser.user);
       commit("setStatus", REQUEST_STATUS.SUCCESS);
       return loggedInUser;
     },

@@ -27,7 +27,7 @@ export default {
   },
   computed: {
     userId() {
-      return this.$store.state.user._id;
+      return this.$store.state.loggedInUser._id;
     }
   },
   methods: {
