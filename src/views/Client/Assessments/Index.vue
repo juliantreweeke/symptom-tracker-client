@@ -1,5 +1,4 @@
 <script>
-import swal from "sweetalert";
 import styles from "./styles.css";
 
 export default {
