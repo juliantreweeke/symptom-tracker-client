@@ -13,6 +13,7 @@ import { sessionStore } from "../utils/storage";
 import {
   DEFAULT_VALUES,
   REQUEST_STATUS,
+  ROLES,
   ROUTES,
   SESSION_STORAGE_KEYS
 } from "../constants";
@@ -47,11 +48,19 @@ export default new Vuex.Store({
     }
   },
   actions: {
-    async getLoggedInUser({ commit }) {
+    async getLoggedInUser({ commit, dispatch }) {
       commit("setStatus", REQUEST_STATUS.LOADING);
+
       const token = sessionStore.getItem(SESSION_STORAGE_KEYS.JWT);
+
       const loggedInUser = await getAuthHandler(ROUTES.USER.AUTH, token);
+
       commit("setLoggedInUser", loggedInUser);
+
+      if (loggedInUser.role === ROLES.CLINICIAN) {
+        dispatch("getAllClientsById", loggedInUser._id);
+      }
+
       commit("setStatus", REQUEST_STATUS.SUCCESS);
     },
     async createAssessment({ commit }, payload) {
@@ -59,10 +68,15 @@ export default new Vuex.Store({
       await createHandler(ROUTES.ASSESSMENT, payload);
       commit("setStatus", REQUEST_STATUS.SUCCESS);
     },
-    async createClient({ commit }, payload) {
+    async createClient({ commit, state }, payload) {
       commit("setStatus", REQUEST_STATUS.LOADING);
+
       const client = await createHandler(ROUTES.USER.CREATE_CLIENT, payload);
+
+      state.clients.push(client);
+
       commit("setStatus", REQUEST_STATUS.SUCCESS);
+
       return client;
     },
     async deleteAssessment({ commit }, id) {

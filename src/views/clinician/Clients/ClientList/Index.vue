@@ -28,10 +28,6 @@ export default {
     clients() {
       return this.$store.state.clients;
     }
-  },
-  methods: {},
-  mounted() {
-    this.$store.dispatch("getAllClientsById");
   }
 };
 </script>
