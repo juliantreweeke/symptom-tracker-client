@@ -54,10 +54,10 @@ export default {
       >
         <p>Create test and check client view as you go.</p>
 
-        <label for="name">First name:</label>
+        <label for="name">Name:</label>
         <input type="text" id="name" v-model="test.name" required />
 
-        <label for="frequency">Gender:</label>
+        <label for="frequency">Frequency:</label>
         <select
           name="frequency"
           id="frequency"
@@ -70,7 +70,7 @@ export default {
           <option value="MONTHLY">Monthly</option>
         </select>
 
-        <label for="question">question:</label>
+        <label for="question">Question:</label>
         <input type="test" id="question" v-model="test.question" required />
       </FormContainer>
     </div>
