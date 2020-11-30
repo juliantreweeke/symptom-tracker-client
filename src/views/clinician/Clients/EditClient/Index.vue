@@ -84,7 +84,7 @@ export default {
         <input type="email" id="email" v-model="client.email" required />
 
         <label for="gender">Gender:</label>
-        <select name="gender" id="gender" v-model="client.gender">
+        <select name="gender" id="gender" v-model="client.gender" required>
           <option disabled value="">Please select one</option>
           <option value="MALE">Male</option>
           <option value="FEMALE">Female</option>

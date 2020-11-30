@@ -68,11 +68,13 @@ export default new Vuex.Store({
 
       commit("setStatus", REQUEST_STATUS.SUCCESS);
     },
+
     async createAssessment({ commit }, payload) {
       commit("setStatus", REQUEST_STATUS.LOADING);
       await createHandler(ROUTES.ASSESSMENT, payload);
       commit("setStatus", REQUEST_STATUS.SUCCESS);
     },
+
     async createClient({ commit, state }, payload) {
       commit("setStatus", REQUEST_STATUS.LOADING);
 
@@ -84,11 +86,13 @@ export default new Vuex.Store({
 
       return client;
     },
+
     async deleteAssessment({ commit }, id) {
       commit("setStatus", REQUEST_STATUS.LOADING);
       await deleteHandler(ROUTES.ASSESSMENT, id);
       commit("setStatus", REQUEST_STATUS.SUCCESS);
     },
+
     async editClient({ commit }, payload) {
       commit("setStatus", REQUEST_STATUS.LOADING);
 
@@ -98,20 +102,24 @@ export default new Vuex.Store({
 
       return client;
     },
+
     async getAllAssessments({ commit }) {
       const assessments = await getAllHandler(ROUTES.ASSESSMENT);
       commit("setAssessments", assessments);
     },
+
     async getAllClinicians({ commit }) {
       const clinicians = await getAllHandler(ROUTES.CLINICIAN);
       commit("setClinicians", clinicians);
     },
+
     async getClientById({ commit }, id) {
       commit("setStatus", REQUEST_STATUS.LOADING);
       const client = await getHandler(ROUTES.USER.BASE, id);
       commit("setClientById", client);
       commit("setStatus", REQUEST_STATUS.SUCCESS);
     },
+
     async getAllClientsById({ commit, state }) {
       commit("setStatus", REQUEST_STATUS.LOADING);
       const clients = await getHandler(
@@ -121,6 +129,7 @@ export default new Vuex.Store({
       commit("setClients", clients);
       commit("setStatus", REQUEST_STATUS.SUCCESS);
     },
+
     async loginUser({ commit }, payload) {
       commit("setStatus", REQUEST_STATUS.LOADING);
       const loggedInUser = await createHandler(ROUTES.USER.LOGIN, payload);
@@ -128,6 +137,7 @@ export default new Vuex.Store({
       commit("setStatus", REQUEST_STATUS.SUCCESS);
       return loggedInUser;
     },
+
     async registerUser({ commit }, payload) {
       commit("setStatus", REQUEST_STATUS.LOADING);
       const user = await createHandler(ROUTES.USER.REGISTER, payload);
