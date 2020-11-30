@@ -28,6 +28,7 @@ export default new Vuex.Store({
     searchQuery: DEFAULT_VALUES.SEARCH_QUERY,
     status: REQUEST_STATUS.INITIAL,
     clients: [],
+    clientsById: {},
     loggedInUser: {}
   },
   mutations: {
@@ -39,6 +40,9 @@ export default new Vuex.Store({
     },
     setClinicians(state, payload) {
       state.clinicians = payload;
+    },
+    setClientById(state, payload) {
+      Vue.set(state.clientsById, payload._id, payload);
     },
     setClients(state, payload) {
       state.clients = payload;
@@ -91,6 +95,12 @@ export default new Vuex.Store({
     async getAllClinicians({ commit }) {
       const clinicians = await getAllHandler(ROUTES.CLINICIAN);
       commit("setClinicians", clinicians);
+    },
+    async getClientById({ commit }, id) {
+      commit("setStatus", REQUEST_STATUS.LOADING);
+      const client = await getHandler(ROUTES.USER.BASE, id);
+      commit("setClientById", client);
+      commit("setStatus", REQUEST_STATUS.SUCCESS);
     },
     async getAllClientsById({ commit, state }) {
       commit("setStatus", REQUEST_STATUS.LOADING);

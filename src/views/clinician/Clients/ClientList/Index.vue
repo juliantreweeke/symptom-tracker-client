@@ -28,6 +28,11 @@ export default {
     clients() {
       return this.$store.state.clients;
     }
+  },
+  methods: {
+    viewClient(id) {
+      this.$router.push(`clients/view/${id}`);
+    }
   }
 };
 </script>
@@ -49,7 +54,11 @@ export default {
             </tr>
           </thead>
           <tbody>
-            <tr v-for="(client, index) in clients" v-bind:key="index">
+            <tr
+              v-on:click="viewClient(client._id)"
+              v-for="(client, index) in clients"
+              v-bind:key="index"
+            >
               <td>{{ client.firstName }} {{ client.lastName }}</td>
               <td>{{ client.DOB }}</td>
               <td>0</td>

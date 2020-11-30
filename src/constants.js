@@ -18,6 +18,7 @@ export const ROUTES = {
   CLINICIAN: "clinician",
   USER: {
     AUTH: "user/auth",
+    BASE: "user",
     CLIENTS: "user/clients",
     CREATE_CLIENT: "user/client",
     REGISTER: "user/register",
