@@ -1,7 +1,9 @@
 const fetchMethod = method => async ({ body, uri, token }) => {
   const requestOptions = {
     method,
-    ...(method === "POST" && body && { body: JSON.stringify(body) }),
+    ...((method === "POST" || "PATCH") &&
+      body && { body: JSON.stringify(body) }),
+
     headers: {
       ...(token && { Authorization: `Bearer ${token}` }),
       "Content-Type": "application/json"

@@ -32,7 +32,7 @@ export const getHandler = async (route, id) => {
   return fetchGet({ uri });
 };
 
-export const updateHandler = async (route, id) => {
-  const uri = `${config.apiBaseUrl}/${route}/${id}`;
-  return fetchPatch({ uri });
+export const updateHandler = async (route, body) => {
+  const uri = `${config.apiBaseUrl}/${route}`;
+  return fetchPatch({ uri, body });
 };

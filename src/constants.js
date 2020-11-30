@@ -20,7 +20,7 @@ export const ROUTES = {
     AUTH: "user/auth",
     BASE: "user",
     CLIENTS: "user/clients",
-    CREATE_CLIENT: "user/client",
+    CLIENT: "user/client",
     REGISTER: "user/register",
     LOGIN: "user/login"
   }

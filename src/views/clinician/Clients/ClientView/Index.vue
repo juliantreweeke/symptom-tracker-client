@@ -18,6 +18,9 @@ export default {
   computed: {
     client() {
       return this.$store.state.clientsById[this.id];
+    },
+    editURL() {
+      return `/clients/edit/${this.id}`;
     }
   },
   created() {
@@ -38,7 +41,7 @@ export default {
         <p>{{ client.status }}</p>
       </template>
       <div v-else>Loading</div>
-      <router-link to="clients/edit">
+      <router-link v-bind:to="editURL">
         <Button text="Edit client" />
       </router-link>
     </div>

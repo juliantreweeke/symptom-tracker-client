@@ -5,7 +5,8 @@ import {
   deleteHandler,
   getAuthHandler,
   getHandler,
-  getAllHandler
+  getAllHandler,
+  updateHandler
 } from "../services/requestService";
 
 import { sessionStore } from "../utils/storage";
@@ -75,7 +76,7 @@ export default new Vuex.Store({
     async createClient({ commit, state }, payload) {
       commit("setStatus", REQUEST_STATUS.LOADING);
 
-      const client = await createHandler(ROUTES.USER.CREATE_CLIENT, payload);
+      const client = await createHandler(ROUTES.USER.CLIENT, payload);
 
       state.clients.push(client);
 
@@ -87,6 +88,15 @@ export default new Vuex.Store({
       commit("setStatus", REQUEST_STATUS.LOADING);
       await deleteHandler(ROUTES.ASSESSMENT, id);
       commit("setStatus", REQUEST_STATUS.SUCCESS);
+    },
+    async editClient({ commit }, payload) {
+      commit("setStatus", REQUEST_STATUS.LOADING);
+
+      const client = await updateHandler(ROUTES.USER.CLIENT, payload);
+
+      commit("setStatus", REQUEST_STATUS.SUCCESS);
+
+      return client;
     },
     async getAllAssessments({ commit }) {
       const assessments = await getAllHandler(ROUTES.ASSESSMENT);

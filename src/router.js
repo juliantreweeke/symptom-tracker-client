@@ -66,6 +66,14 @@ const routes = [
     }
   },
   {
+    path: "/clients/edit/:id",
+    name: "create client",
+    component: () => import("./views/Clinician/Clients/EditClient/Index.vue"),
+    meta: {
+      requiresClinicianAuth: true
+    }
+  },
+  {
     path: "/tests",
     name: "tests",
     component: () => import("./views/Clinician/Tests/Index.vue"),
