@@ -57,9 +57,9 @@ export default {
 </script>
 
 <template>
-  <div>
+  <div class="register">
     <Header />
-    <div class="register">
+    <div class="register-layout">
       <FormContainer
         v-bind:heading="heading"
         v-bind:submit="registerUser"

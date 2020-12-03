@@ -52,9 +52,9 @@ export default {
 </script>
 
 <template>
-  <div>
+  <div class="login">
     <Header />
-    <div class="login">
+    <div class="login-layout container">
       <FormContainer
         heading="Sign in"
         v-bind:submit="loginUser"

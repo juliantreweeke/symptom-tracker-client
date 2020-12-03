@@ -29,8 +29,8 @@ export default {
 </script>
 
 <template>
-  <div class="form-container flex-grid flex-justify margin-auto">
-    <form @submit.prevent="submit" class="form flex-grid flex-col">
+  <div class="form-container">
+    <form @submit.prevent="submit" class="form flex-col">
       <h1
         v-bind:class="[variant ? 'primary-heading' : 'secondary-heading']"
         class="form-heading"

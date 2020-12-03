@@ -1,5 +1,9 @@
 @import '../../styles/index.css';
 
+.form-container {
+
+}
+
 .form-container h1 {
     margin-bottom: 61px;
 }
