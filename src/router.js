@@ -82,6 +82,14 @@ const routes = [
     }
   },
   {
+    path: "/test/example",
+    name: "tests",
+    component: () => import("./views/Clinician/Tests/TestExample/Index.vue"),
+    meta: {
+      requiresClinicianAuth: true
+    }
+  },
+  {
     path: "/test/create",
     name: "create new test",
     component: () => import("./views/Clinician/Tests/CreateTest/Index.vue"),

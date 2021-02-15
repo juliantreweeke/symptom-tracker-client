@@ -1,0 +1,14 @@
+@import '../../../../styles/index.css';
+
+.chart {
+    margin-top: 100px;
+}
+
+.form input {
+    width:10%;
+}
+
+.radio-group {
+    margin-bottom:40px;
+    border:none;
+}
